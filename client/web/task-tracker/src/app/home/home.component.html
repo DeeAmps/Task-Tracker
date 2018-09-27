@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/add">TASK TRACKER</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" style="cursor: pointer"  routerLink="/home/add">Add Task <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer" routerLink="/home/logs">Task Logs</a>
+            </li>
+        </ul>
+        <a style="color: white" class="ml-auto">Welcome, {{ profile?.given_name }}</a>
+        <a class="nav-link" style="cursor: pointer; color: red" (click)="logout()">Logout</a>
+
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
