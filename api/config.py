@@ -8,7 +8,7 @@ class Config(object):
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:123_pass@localhost:5432/tasktracker"
+    SQLALCHEMY_DATABASE_URI = "postgres://tigklcnw:unK_OIUhZ4_5LQen4H4jXtedIfnesS8V@baasu.db.elephantsql.com:5432/tigklcnw"  #"postgresql://postgres:123_pass@localhost:5432/tasktracker"
 
 class ProductionConfig(Config):
     DEBUG = False

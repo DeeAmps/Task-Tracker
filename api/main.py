@@ -11,6 +11,11 @@ app.config.from_object(DevelopmentConfig)
 
 db = SQLAlchemy(app)
 
+@app.route("/api/test")
+def test():
+    return "API live on http://flask-tasktracker.appspot.com/api"
+    
+
 @app.route("/api/employeelogs/<userId>", methods=["POST"])
 def getManagerEmployeeLogs(userId):
     user = Users.query.filter_by(id=userId, oauth2=request.json["Auth"]).first()

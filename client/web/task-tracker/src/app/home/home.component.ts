@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
           this.auth.getProfile((err, profile) => {
             this.api.loggedInUser(profile).subscribe(res => {
               this.data = res
+              console.log(res);
               this.isManager = this.data.isManager;
               this.storeUserIdAndAuthField(this.data.userData);
               this.profile = this.data.userData;
