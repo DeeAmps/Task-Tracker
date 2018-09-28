@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from config import DevelopmentConfig
 from models import Users, UserTasks, Managers
 from datetime import datetime
-import json
 
 app = Flask(__name__)
 CORS(app)
@@ -14,17 +13,25 @@ db = SQLAlchemy(app)
 
 @app.route("/api/employeelogs/<userId>", methods=["POST"])
 def getManagerEmployeeLogs(userId):
-    print("In here Dude!")
     user = Users.query.filter_by(id=userId, oauth2=request.json["Auth"]).first()
     checkManager = True if Managers.query.filter_by(id=user.id) else False
     if user is not None and checkManager:
-        employeeTasks = db.engine.execute(f'SELECT "users"."family_name", "users"."nickname", "users"."last_login_date", "tasks"."task", "tasks"."start_time", "tasks"."end_time", "tasks"."task_date" FROM "users" INNER JOIN "tasks" ON "users"."id" = "tasks"."user_id" WHERE "users"."manager_id" = {user.id}')
+        manager = Managers.query.filter_by(nickname=user.nickname).first()
+        sqlQuery = f"SELECT users.family_name, users.nickname, users.last_login_date, tasks.task, tasks.start_time, tasks.end_time, tasks.task_date FROM users INNER JOIN tasks ON users.id = tasks.user_id WHERE users.manager_id = {manager.id}"
+        employeeTasks = db.engine.execute(sqlQuery).fetchall()
         results = []
         for row in employeeTasks:
-            print(row)
-            #results.append(row[0])
-        print(results)
-        return "ok"
+            rowSerialized = {
+                "family_name": row[0],
+                "nickname": row[1],
+                "last_login_date": row[2],
+                "task": row[3],
+                "start_time": row[4],
+                "end_time": row[5],
+                "task_date": row[6],
+            }
+            results.append(rowSerialized)
+        return jsonify(results)
     else:
         return jsonify({"success": False, "message": "You are not authorised to this endpoint"})
 

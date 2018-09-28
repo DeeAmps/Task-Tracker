@@ -7,12 +7,12 @@ import { ApiService } from '../api.service';
   styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-
+  tasklogs: any;
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.api.getEmployeeTasks(this.retrieveUserId(), this.retrieveUserAuth()).subscribe(res => {
-      console.log(res)
+      this.tasklogs = res
     })
   }
 

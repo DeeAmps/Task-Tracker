@@ -1,3 +1,30 @@
-<p>
-  manager works!
-</p>
+<div>
+  <h3 style="margin-top: 1%" class="text-center">Employees Task Logs</h3>
+</div>
+<br><br>
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Surname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Last Login</th>
+        <th scope="col">Task</th>
+        <th scope="col">Task Date</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of tasklogs">
+        <th>{{ log.family_name }}</th>
+        <th>{{ log.nickname }}</th>
+        <th>{{ log.last_login_date | date:'medium'  }}</th>
+        <th>{{ log.task }}</th>
+        <th>{{ log.task_date | date:'medium' }}</th>
+        <th>{{ log.start_time }}</th>
+        <th>{{ log.end_time }}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
