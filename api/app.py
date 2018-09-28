@@ -12,6 +12,22 @@ app.config.from_object(DevelopmentConfig)
 
 db = SQLAlchemy(app)
 
+@app.route("/api/employeelogs/<userId>", methods=["POST"])
+def getManagerEmployeeLogs(userId):
+    print("In here Dude!")
+    user = Users.query.filter_by(id=userId, oauth2=request.json["Auth"]).first()
+    checkManager = True if Managers.query.filter_by(id=user.id) else False
+    if user is not None and checkManager:
+        employeeTasks = db.engine.execute(f'SELECT "users"."family_name", "users"."nickname", "users"."last_login_date", "tasks"."task", "tasks"."start_time", "tasks"."end_time", "tasks"."task_date" FROM "users" INNER JOIN "tasks" ON "users"."id" = "tasks"."user_id" WHERE "users"."manager_id" = {user.id}')
+        results = []
+        for row in employeeTasks:
+            print(row)
+            #results.append(row[0])
+        print(results)
+        return "ok"
+    else:
+        return jsonify({"success": False, "message": "You are not authorised to this endpoint"})
+
 @app.route("/api/get/<userId>", methods=["POST"])
 def getUserTasks(userId):
         user = Users.query.filter_by(id=userId, oauth2=request.json["Auth"]).first() # check if user exists
@@ -54,10 +70,11 @@ def login():
         db.session.commit()
         return jsonify(newUser.serialize())
     else:
+        checkManager = True if Managers.query.filter_by(id=user.id) else False
         user.last_login_date = datetime.now() # Update only last login date if user data is found
         user.oauth2 = request.json["sub"]
         db.session.commit()
-        return jsonify(user.serialize())
+        return jsonify({"userData" : user.serialize(), "isManager": checkManager})
 
 
 if __name__ == "__main__":

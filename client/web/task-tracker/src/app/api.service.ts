@@ -20,4 +20,8 @@ export class ApiService {
   getUserTasks(userId, userAuth){
     return this.http.post(`${this.apiUrl}/get/${userId}`, { "Auth" : userAuth })
   }
+
+  getEmployeeTasks(userId,userAuth){
+    return this.http.post(`${this.apiUrl}/employeelogs/${userId}`, { "Auth" : userAuth })
+  }
 }

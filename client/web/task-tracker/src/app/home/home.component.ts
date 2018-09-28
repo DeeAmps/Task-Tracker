@@ -10,6 +10,8 @@ import { ApiService } from "../api.service";
 })
 export class HomeComponent implements OnInit {
   profile: any;
+  data: any;
+  isManager: boolean;
   constructor(private auth: AuthService, private api: ApiService) { }
 
   ngOnInit() {
@@ -20,8 +22,10 @@ export class HomeComponent implements OnInit {
         } else {
           this.auth.getProfile((err, profile) => {
             this.api.loggedInUser(profile).subscribe(res => {
-              this.storeUserIdAndAuthField(res);
-              this.profile = res;
+              this.data = res
+              this.isManager = this.data.isManager;
+              this.storeUserIdAndAuthField(this.data.userData);
+              this.profile = this.data.userData;
             });
           });
         }

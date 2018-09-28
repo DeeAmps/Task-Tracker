@@ -12,6 +12,9 @@
             <li class="nav-item">
                 <a class="nav-link" style="cursor: pointer" routerLink="/home/logs">Task Logs</a>
             </li>
+            <li class="nav-item" *ngIf="isManager">
+                <a class="nav-link" style="cursor: pointer" routerLink="/home/emplogs">Employee Logs</a>
+            </li>
         </ul>
         <a style="color: white" class="ml-auto">Welcome, {{ profile?.userGiveName }}</a>
         <a class="nav-link" style="cursor: pointer; color: red" (click)="logout()">Logout</a>

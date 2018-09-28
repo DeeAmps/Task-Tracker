@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { LogTasksComponent } from './log-tasks/log-tasks.component';
 import { ApiService } from "./api.service";
+import { ManagerComponent } from './manager/manager.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ApiService } from "./api.service";
     LoginComponent,
     HomeComponent,
     AddTaskComponent,
-    LogTasksComponent
+    LogTasksComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
