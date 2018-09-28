@@ -13,7 +13,7 @@
                 <a class="nav-link" style="cursor: pointer" routerLink="/home/logs">Task Logs</a>
             </li>
         </ul>
-        <a style="color: white" class="ml-auto">Welcome, {{ profile?.given_name }}</a>
+        <a style="color: white" class="ml-auto">Welcome, {{ profile?.userGiveName }}</a>
         <a class="nav-link" style="cursor: pointer; color: red" (click)="logout()">Logout</a>
 
     </div>

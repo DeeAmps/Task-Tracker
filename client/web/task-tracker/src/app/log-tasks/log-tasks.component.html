@@ -1,3 +1,18 @@
-<p>
-  log-tasks works!
-</p>
+<div style="margin-top: 1%">
+  <h2 class="text-center">My Tasks</h2>
+</div>
+<div style="margin-top: 4%" *ngFor="let task of userTaskLog">
+  <div class="card" >
+    <div class="" style="background-color: green; color: white" class="card-header">
+      <h3 class="text-center">Task - {{ task.task }}</h3> 
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Task Started - {{ task.startTime }} GMT</p>
+        <p>Task Completed - {{ task.endTime }} GMT</p>
+        <footer class="blockquote-footer">Task Log Date - <cite>{{ task.taskDate }}</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+  <br>
+</div>
