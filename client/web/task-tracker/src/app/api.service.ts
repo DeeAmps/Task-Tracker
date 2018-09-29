@@ -6,7 +6,7 @@ import { UserTask } from './custom/UserTask';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl:string = " https://flask-tasktracker.appspot.com/api"
+  private apiUrl:string = "https://flask-tasktracker.appspot.com/api"
   constructor(private http: HttpClient) { }
 
   loggedInUser(user){

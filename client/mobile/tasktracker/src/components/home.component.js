@@ -13,7 +13,7 @@ export default class HomeScreen extends Component {
         const { navigation } = this.props;
         const credentials = navigation.getParam('credentials') || {}; //Get returned credentials from openId login
         this.state = {
-            userId : credentials.userId == undefined ? 1 : credentials.userId,
+            userId : credentials.userId == undefined ? 0 : credentials.userId,
             gauth: credentials.gauth  == undefined ? "" : credentials.gauth
         }
     }
@@ -37,7 +37,7 @@ export default class HomeScreen extends Component {
                     <Title style={{backgroundColor: red,alignItems: 'center', alignContent: 'center'}}>Task Tracker</Title>
                 </Body>
                 <Right>
-                    <Button onPress={this._onLogout} transparent>
+                    <Button onPress={this._onLogout}>
                         <Icon name='log-out' />
                     </Button>
                 </Right>
