@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Thumbnail, Body, Left, Right, List, ListItem, Content } from 'native-base';
+import { Container, Text, Body, Right, List, ListItem, Content } from 'native-base';
 import { getUserTasks } from "../service/api.service"
 
 export default class LogTaskScreen extends Component {

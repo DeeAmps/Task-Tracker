@@ -93,7 +93,7 @@ export default class AddTaskScreen extends Component {
                                 </Button>
                                 </Col>
                                 <Col>
-                                    { this.state.submitted ? <Spinner color='red' /> : "" }  
+                                    { this.state.submitted ? <Spinner color='red' /> : <Text></Text> }  
                                 </Col>
                                 <Col>
                                 <Button onPress={() => this._showDateTimePicker("EndTime")} info iconRight>

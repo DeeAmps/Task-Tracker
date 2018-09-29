@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 Button,
-Platform,
 StyleSheet,
 Text,
 Image,
@@ -9,8 +8,8 @@ View
 } from 'react-native';
 import { loggedInUser } from "../service/api.service"
 import Auth0 from 'react-native-auth0';
+import credentials from  '../../auth0-credentials';
 
-var credentials = require('../../auth0-credentials');
 const auth0 = new Auth0(credentials);
 
 
@@ -37,19 +36,6 @@ export default class LoginScreen extends Component {
                 
             })
             .catch(error => console.log(error));
-    };
-
-    _onLogout = () => {
-        if (Platform.OS === 'android') {
-            this.setState({ accessToken: null });
-        } else {
-            auth0.webAuth
-            .clearSession({})
-            .then(success => {
-                this.setState({ accessToken: null });
-            })
-            .catch(error => console.log(error));
-        }
     };
 
     render() {
